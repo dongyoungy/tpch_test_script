@@ -1,7 +1,7 @@
 select
 	sum(l_extendedprice) / 7.0 as avg_yearly
 from
-	lineitem_scramble,
+	lineitem,
 	part
 where
 	p_partkey = l_partkey
@@ -11,7 +11,7 @@ where
 		select
 			0.2 * avg(l_quantity)
 		from
-			lineitem
+			VERDICT_DATABASE.lineitem_scramble
 		where
 			l_partkey = p_partkey
 	);

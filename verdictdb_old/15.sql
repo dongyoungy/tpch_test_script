@@ -3,10 +3,10 @@ with q1 as
 		l_suppkey as supplier_no,
 		sum(l_extendedprice * (1 - l_discount)) as total_revenue
 	from
-		tpch100g_parquet.lineitem_scramble
+		VERDICT_DATABASE.lineitem_scramble
 	where
-		l_shipdate >= date '1995-01-01'
-		and l_shipdate < date '1995-04-01'
+		l_shipdate >= '1995-01-01'
+		and l_shipdate < '1995-04-01'
 	group by
 		l_suppkey
 select
