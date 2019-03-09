@@ -9,5 +9,5 @@ for node in $(cat ${nodes}); do
 done
 
 wait
-sleep 10
+sleep 60
 echo "DONE"

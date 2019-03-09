@@ -9,7 +9,7 @@ where
 		select
 			ps_suppkey
 		from
-			VERDICT_DATABASE.partsupp
+			partsupp
 		where
 			ps_partkey in (
 				select
