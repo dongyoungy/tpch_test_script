@@ -1,0 +1,6 @@
+Starting Impala Shell without Kerberos authentication
+Connected to cp-2.cloudera-test5.rdmaresearch-pg0.wisc.cloudlab.us:21000
+Server version: impalad version 2.12.0-cdh5.16.1 RELEASE (build 4a3775ef6781301af81b23bca45a9faeca5e761d)
+Query: use `tpch500g_parquet`
+Could not execute command: use `tpch500g_parquet`
+ Cancelling Query

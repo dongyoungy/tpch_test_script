@@ -1,0 +1,106 @@
+### 100GB
+----------------
+Max Per-Host Resource Reservation: Memory=15.94MB
+Per-Host Resource Estimates: Memory=648.00MB
+
+F02:PLAN FRAGMENT [UNPARTITIONED] hosts=1 instances=1
+|  Per-Host Resources: mem-estimate=0B mem-reservation=0B
+PLAN-ROOT SINK
+|  mem-estimate=0B mem-reservation=0B
+|
+05:MERGING-EXCHANGE [UNPARTITIONED]
+|  order by: l_returnflag ASC, l_linestatus ASC
+|  mem-estimate=0B mem-reservation=0B
+|  tuple-ids=3 row-size=130B cardinality=6
+|
+F01:PLAN FRAGMENT [HASH(l_returnflag,l_linestatus)] hosts=1 instances=1
+Per-Host Resources: mem-estimate=22.00MB mem-reservation=13.94MB
+02:SORT
+|  order by: l_returnflag ASC, l_linestatus ASC
+|  mem-estimate=12.00MB mem-reservation=12.00MB spill-buffer=2.00MB
+|  tuple-ids=3 row-size=130B cardinality=6
+|
+04:AGGREGATE [FINALIZE]
+|  output: sum:merge(l_quantity), sum:merge(l_extendedprice), sum:merge(l_extendedprice * (1 - l_discount)), sum:merge(l_extendedprice * (1 - l_discount) * (1 + l_tax)), avg:merge(l_quantity), avg:merge(l_extendedprice), avg:merge(l_discount), count:merge(*)
+|  group by: l_returnflag, l_linestatus
+|  mem-estimate=10.00MB mem-reservation=1.94MB spill-buffer=64.00KB
+|  tuple-ids=2 row-size=130B cardinality=6
+|
+03:EXCHANGE [HASH(l_returnflag,l_linestatus)]
+|  mem-estimate=0B mem-reservation=0B
+|  tuple-ids=1 row-size=130B cardinality=6
+|
+F00:PLAN FRAGMENT [RANDOM] hosts=1 instances=1
+Per-Host Resources: mem-estimate=626.00MB mem-reservation=2.00MB
+01:AGGREGATE [STREAMING]
+|  output: sum(l_quantity), sum(l_extendedprice), sum(l_extendedprice * (1 - l_discount)), sum(l_extendedprice * (1 - l_discount) * (1 + l_tax)), avg(l_quantity), avg(l_extendedprice), avg(l_discount), count(*)
+|  group by: l_returnflag, l_linestatus
+|  mem-estimate=10.00MB mem-reservation=2.00MB spill-buffer=64.00KB
+|  tuple-ids=1 row-size=130B cardinality=6
+|
+00:SCAN HDFS [tpch100g_parquet.lineitem, RANDOM]
+   partitions=1/1 files=80 size=19.70GB
+   predicates: l_shipdate <= TIMESTAMP '1998-12-01 00:00:00'
+   stored statistics:
+     table: rows=600037902 size=19.70GB
+     columns: all
+   extrapolated-rows=disabled
+   parquet statistics predicates: l_shipdate <= TIMESTAMP '1998-12-01 00:00:00'
+   parquet dictionary predicates: l_shipdate <= TIMESTAMP '1998-12-01 00:00:00'
+   mem-estimate=616.00MB mem-reservation=0B
+   tuple-ids=0 row-size=82B cardinality=60003790
+----------------
+
+
+### 500GB
+----------------
+Max Per-Host Resource Reservation: Memory=15.94MB
+Per-Host Resource Estimates: Memory=648.00MB
+
+F02:PLAN FRAGMENT [UNPARTITIONED] hosts=1 instances=1
+|  Per-Host Resources: mem-estimate=0B mem-reservation=0B
+PLAN-ROOT SINK
+|  mem-estimate=0B mem-reservation=0B
+|
+05:MERGING-EXCHANGE [UNPARTITIONED]
+|  order by: l_returnflag ASC, l_linestatus ASC
+|  mem-estimate=0B mem-reservation=0B
+|  tuple-ids=3 row-size=130B cardinality=6
+|
+F01:PLAN FRAGMENT [HASH(l_returnflag,l_linestatus)] hosts=17 instances=17
+Per-Host Resources: mem-estimate=22.00MB mem-reservation=13.94MB
+02:SORT
+|  order by: l_returnflag ASC, l_linestatus ASC
+|  mem-estimate=12.00MB mem-reservation=12.00MB spill-buffer=2.00MB
+|  tuple-ids=3 row-size=130B cardinality=6
+|
+04:AGGREGATE [FINALIZE]
+|  output: sum:merge(l_quantity), sum:merge(l_extendedprice), sum:merge(l_extendedprice * (1 - l_discount)), sum:merge(l_extendedprice * (1 - l_discount) * (1 + l_tax)), avg:merge(l_quantity), avg:merge(l_extendedprice), avg:merge(l_discount), count:merge(*)
+|  group by: l_returnflag, l_linestatus
+|  mem-estimate=10.00MB mem-reservation=1.94MB spill-buffer=64.00KB
+|  tuple-ids=2 row-size=130B cardinality=6
+|
+03:EXCHANGE [HASH(l_returnflag,l_linestatus)]
+|  mem-estimate=0B mem-reservation=0B
+|  tuple-ids=1 row-size=130B cardinality=6
+|
+F00:PLAN FRAGMENT [RANDOM] hosts=17 instances=17
+Per-Host Resources: mem-estimate=626.00MB mem-reservation=2.00MB
+01:AGGREGATE [STREAMING]
+|  output: sum(l_quantity), sum(l_extendedprice), sum(l_extendedprice * (1 - l_discount)), sum(l_extendedprice * (1 - l_discount) * (1 + l_tax)), avg(l_quantity), avg(l_extendedprice), avg(l_discount), count(*)
+|  group by: l_returnflag, l_linestatus
+|  mem-estimate=10.00MB mem-reservation=2.00MB spill-buffer=64.00KB
+|  tuple-ids=1 row-size=130B cardinality=6
+|
+00:SCAN HDFS [tpch500g_parquet.lineitem, RANDOM]
+   partitions=1/1 files=440 size=106.77GB
+   predicates: l_shipdate <= TIMESTAMP '1998-12-01 00:00:00'
+   stored statistics:
+     table: rows=3000028242 size=106.77GB
+     columns: all
+   extrapolated-rows=disabled
+   parquet statistics predicates: l_shipdate <= TIMESTAMP '1998-12-01 00:00:00'
+   parquet dictionary predicates: l_shipdate <= TIMESTAMP '1998-12-01 00:00:00'
+   mem-estimate=616.00MB mem-reservation=0B
+   tuple-ids=0 row-size=82B cardinality=300002824
+----------------

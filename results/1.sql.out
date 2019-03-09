@@ -1,0 +1,39 @@
+Starting Impala Shell without Kerberos authentication
+Connected to cp-2.cloudera-test5.rdmaresearch-pg0.wisc.cloudlab.us:21000
+Server version: impalad version 2.12.0-cdh5.16.1 RELEASE (build 4a3775ef6781301af81b23bca45a9faeca5e761d)
+Query: use `tpch500g_parquet`
+Query: select l_returnflag,
+	l_linestatus,
+	sum(l_quantity) as sum_qty,
+	sum(l_extendedprice) as sum_base_price,
+	sum(l_extendedprice * (1 - l_discount)) as sum_disc_price,
+	sum(l_extendedprice * (1 - l_discount) * (1 + l_tax)) as sum_charge,
+	avg(l_quantity) as avg_qty,
+	avg(l_extendedprice) as avg_price,
+	avg(l_discount) as avg_disc,
+	count(*) as count_order
+from
+	lineitem
+where
+	l_shipdate <= '1998-12-01'
+group by
+	l_returnflag,
+	l_linestatus
+order by
+	l_returnflag,
+	l_linestatus
+Query submitted at: 2019-03-04 13:22:55 (Coordinator: http://cp-2.cloudera-test5.rdmaresearch-pg0.wisc.cloudlab.us:25000)
+Query progress can be monitored at: http://cp-2.cloudera-test5.rdmaresearch-pg0.wisc.cloudlab.us:25000/query_plan?query_id=80439b68631c4229:316bba0100000000
++--------------+--------------+----------------+-------------------+---------------------+-----------------------+---------+-----------+----------+-------------+
+| l_returnflag | l_linestatus | sum_qty        | sum_base_price    | sum_disc_price      | sum_charge            | avg_qty | avg_price | avg_disc | count_order |
++--------------+--------------+----------------+-------------------+---------------------+-----------------------+---------+-----------+----------+-------------+
+| A            | F            | 18878126969.00 | 28307507117507.85 | 26892115487645.1917 | 27967792349352.214520 | 25.49   | 38236.84  | 0.05     | 740320226   |
+| N            | F            | 492692377.00   | 738764873724.36   | 701823834069.1579   | 729897841657.269825   | 25.49   | 38235.27  | 0.05     | 19321552    |
+| N            | O            | 38251936999.00 | 57358765896696.10 | 54490847496720.2039 | 56670520289869.078045 | 25.50   | 38237.25  | 0.04     | 1500075500  |
+| R            | F            | 18878152156.00 | 28307869250876.65 | 26892489304558.9549 | 27968188361596.781113 | 25.50   | 38237.80  | 0.04     | 740310964   |
++--------------+--------------+----------------+-------------------+---------------------+-----------------------+---------+-----------+----------+-------------+
+Fetched 4 row(s) in 22.07s
+
+real	0m23.243s
+user	0m0.124s
+sys	0m0.081s
