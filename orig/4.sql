@@ -4,8 +4,8 @@ select
 from
  orders
 where
- o_orderdate >= '1993-07-01'
- and o_orderdate < '1993-10-01'
+ o_orderdate >= cast('1993-07-01' as timestamp)
+ and o_orderdate < cast('1993-10-01' as timestamp)
  and exists (
   select
    *

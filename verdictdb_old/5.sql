@@ -16,8 +16,8 @@ where
 	and s_nationkey = n_nationkey
 	and n_regionkey = r_regionkey
 	and r_name = 'ASIA'
-	and o_orderdate >= '1994-12-01'
-	and o_orderdate < '1995-12-01'
+	and o_orderdate >= cast('1994-12-01' as timestamp)
+	and o_orderdate < cast('1995-12-01' as timestamp)
 group by
 	n_name
 order by

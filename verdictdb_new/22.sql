@@ -290,16 +290,18 @@ group by
 order by
  cntrycode;
 
-
+-- 500g
+-- o_custkey: 49999882
+-- c_custkey: 75000000
 select
  cntrycode,
  totalcust,
  avgacctbal,
  cnt1,
  cnt2,
- cnt1 * (1 - pow((1-prob1), 100)) / (1-((1-prob1))) * 9999832 / 15000000 AS val,
- totalcust - (cnt1 * (1 - pow((1-prob1), 100)) / (1-((1-prob1))) * 9999832 / 15000000) AS numcust,
- (totalcust - (cnt1 * (1 - pow((1-prob1), 100)) / (1-((1-prob1))))  * 9999832 / 15000000) * avgacctbal as val
+ cnt1 * (1 - pow((1-prob1), 100)) / (1-((1-prob1))) * 49999882 / 75000000 AS val,
+ totalcust - (cnt1 * (1 - pow((1-prob1), 100)) / (1-((1-prob1))) * 49999882 / 75000000) AS numcust,
+ (totalcust - (cnt1 * (1 - pow((1-prob1), 100)) / (1-((1-prob1))))  * 49999882 / 75000000) * avgacctbal as val
 from (
 select substring(c_phone,1,2) as cntrycode, count(*) as totalcust, avg(c_acctbal) avgacctbal, 
 sum(case when o_custkey is not null then 1 else 0 end) as cnt1,
@@ -308,7 +310,7 @@ avg(case when o_custkey is not null then 1 else 0 end) as prob1,
 avg(cnt) as avgcnt
 from
    customer c
-   left join (select o_custkey, count(*) as cnt from tpch100g_sample.orders_sample_1p_ss group by o_custkey) t2 on t2.o_custkey = c.c_custkey
+   left join (select o_custkey, count(*) as cnt from tpch500g_sample.orders_sample_1p_ss group by o_custkey) t2 on t2.o_custkey = c.c_custkey
 where
   substring(c_phone,1,2) in
   ('13', '31', '23', '29', '30', '18', '17')

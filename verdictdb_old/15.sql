@@ -5,8 +5,8 @@ with q1 as
  from
   lineitem
  where
-  l_shipdate >= '1995-01-01'
-  and l_shipdate < '1995-04-01'
+  l_shipdate >= cast('1995-01-01' as timestamp)
+  and l_shipdate < cast('1995-04-01' as timestamp)
  group by
   l_suppkey)
 select

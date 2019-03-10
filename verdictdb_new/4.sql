@@ -70,7 +70,7 @@ FROM (SELECT o_orderpriority, count(*) as total,
         end) as prob 
       FROM orders o LEFT JOIN 
         (SELECT l_orderkey, COUNT(*) as cnt 
-         FROM tpch100g_sample.lineitem_sample_1p_ss 
+         FROM tpch500g_sample.lineitem_sample_1p_ss 
          WHERE l_commitdate < l_receiptdate 
          GROUP BY l_orderkey) tmp 
       ON tmp.l_orderkey = o_orderkey

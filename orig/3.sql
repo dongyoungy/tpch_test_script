@@ -11,8 +11,8 @@ where
  c_mktsegment = 'BUILDING'
  and c_custkey = o_custkey
  and l_orderkey = o_orderkey
- and o_orderdate < '1995-03-15'
- and l_shipdate > '1995-03-15'
+ and o_orderdate < cast('1995-03-15' as timestamp)
+ and l_shipdate > cast('1995-03-15' as timestamp)
 group by
  l_orderkey,
  o_orderdate,
