@@ -12,7 +12,7 @@ from
 			l_extendedprice * (1 - l_discount) as volume
 		from
 			supplier,
-			VERDICT_DATABASE.lineitem_scramble,
+			VERDICT_DATABASE.LINEITEM,
 			orders,
 			customer,
 			nation n1,

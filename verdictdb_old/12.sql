@@ -14,7 +14,7 @@ select
 	end) as low_line_count
 from
 	orders,
-	VERDICT_DATABASE.lineitem_scramble
+	VERDICT_DATABASE.LINEITEM
 where
 	o_orderkey = l_orderkey
 	and l_shipmode in ('MAIL', 'SHIP')

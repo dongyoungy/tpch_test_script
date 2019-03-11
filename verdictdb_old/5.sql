@@ -4,7 +4,7 @@ select
 from
 	customer,
 	orders,
-	VERDICT_DATABASE.lineitem_scramble,
+	VERDICT_DATABASE.LINEITEM,
 	supplier,
 	nation,
 	region

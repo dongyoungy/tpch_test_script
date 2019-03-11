@@ -3,7 +3,7 @@ select
 	count(*) as numwait
 from
 	supplier,
-	VERDICT_DATABASE.lineitem_scramble l1,
+	VERDICT_DATABASE.LINEITEM l1,
 	orders,
 	nation
 where

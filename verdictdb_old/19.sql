@@ -1,7 +1,7 @@
 select
 	sum(l_extendedprice* (1 - l_discount)) as revenue
 from
-	VERDICT_DATABASE.lineitem_scramble,
+	VERDICT_DATABASE.LINEITEM,
 	part
 where
 	(

@@ -13,7 +13,7 @@ from
 		from
 			part,
 			supplier,
-			VERDICT_DATABASE.lineitem_scramble,
+			VERDICT_DATABASE.LINEITEM,
 			orders,
 			customer,
 			nation n1,

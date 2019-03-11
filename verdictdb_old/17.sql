@@ -11,7 +11,7 @@ where
 		select
 			0.2 * avg(l_quantity)
 		from
-			VERDICT_DATABASE.lineitem_scramble
+			VERDICT_DATABASE.LINEITEM
 		where
 			l_partkey = p_partkey
 	);

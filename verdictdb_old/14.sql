@@ -5,7 +5,7 @@ select
 		else 0
 	end) / sum(l_extendedprice * (1 - l_discount)) as promo_revenue
 from
-	VERDICT_DATABASE.lineitem_scramble,
+	VERDICT_DATABASE.LINEITEM,
 	part
 where
 	l_partkey = p_partkey

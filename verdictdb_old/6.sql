@@ -1,7 +1,7 @@
 select
 	sum(l_extendedprice * l_discount) as revenue
 from
-	VERDICT_DATABASE.lineitem_scramble
+	VERDICT_DATABASE.LINEITEM
 where
 	l_shipdate >= cast('1994-01-01' as timestamp)
 	and l_shipdate < cast('1995-01-01' as timestamp)

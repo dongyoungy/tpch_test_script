@@ -11,7 +11,7 @@ from
 		from
 			part,
 			supplier,
-			VERDICT_DATABASE.lineitem_scramble,
+			VERDICT_DATABASE.LINEITEM,
 			partsupp,
 			orders,
 			nation

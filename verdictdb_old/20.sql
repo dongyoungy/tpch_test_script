@@ -23,7 +23,7 @@ where
 				select
 					0.5 * sum(l_quantity)
 				from
-					VERDICT_DATABASE.lineitem_scramble
+					VERDICT_DATABASE.LINEITEM
 				where
 					l_partkey = ps_partkey
 					and l_suppkey = ps_suppkey

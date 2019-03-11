@@ -6,7 +6,7 @@ select
 from
 	customer,
 	orders,
-	VERDICT_DATABASE.lineitem_scramble
+	VERDICT_DATABASE.LINEITEM
 where
 	c_mktsegment = 'BUILDING'
 	and c_custkey = o_custkey

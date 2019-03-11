@@ -10,7 +10,7 @@ select
 	avg(l_discount) as avg_disc,
 	count(*) as count_order
 from
-	VERDICT_DATABASE.lineitem_scramble
+	VERDICT_DATABASE.LINEITEM
 where
 	l_shipdate <= cast('1998-12-01' as timestamp)
 group by

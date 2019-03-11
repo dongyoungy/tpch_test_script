@@ -8,7 +8,7 @@ select
 from
 	customer,
 	orders,
-	VERDICT_DATABASE.lineitem_scramble
+	VERDICT_DATABASE.LINEITEM
 where
 	o_orderkey in (
 		select
